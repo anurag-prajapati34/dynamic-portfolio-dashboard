@@ -1,0 +1,84 @@
+export interface YfStockQuote {
+  language: string; // 'en-US'
+  region: string; // 'US'
+  quoteType: string; // 'EQUITY'
+  typeDisp: string; // 'Equity'
+  quoteSourceName: string; // 'Delayed Quote'
+  triggerable: boolean; // true
+  customPriceAlertConfidence: string; // 'HIGH'
+  currency: string; // 'INR'
+  hasPrePostMarketData: boolean; // false
+  firstTradeDateMilliseconds: Date; // 2017-10-03T03:45:00.000Z
+  priceHint: number; // 2
+  shortName: string; // 'SBI LIFE INSURANCE CO LTD'
+  longName: string; // 'SBI Life Insurance Company Limited'
+  regularMarketChangePercent: number; // -1.7346184
+  regularMarketPrice: number; // 1761.8
+  corporateActions: any[]; // []
+  regularMarketTime: Date; // 2026-08-24T09:45:05.000Z
+  exchange: string; // 'NSI'
+  messageBoardId: string; // 'finmb_11436324'
+  exchangeTimezoneName: string; // 'Asia/Kolkata'
+  exchangeTimezoneShortName: string; // 'IST'
+  gmtOffSetMilliseconds: number; // 19800000
+  market: string; // 'in_market'
+  esgPopulated: boolean; // false
+  marketState: string; // 'POSTPOST'
+  fiftyTwoWeekChangePercent: number; // -2.9185593
+  earningsTimestamp: Date; // 2026-07-24T10:00:00.000Z
+  earningsTimestampStart: Date; // 2026-10-23T10:00:00.000Z
+  earningsTimestampEnd: Date; // 2026-10-23T10:00:00.000Z
+  earningsCallTimestampStart: Date; // 2026-07-24T11:00:00.000Z
+  earningsCallTimestampEnd: Date; // 2026-07-24T11:00:00.000Z
+  isEarningsDateEstimate: boolean; // false
+  trailingAnnualDividendRate: number; // 0
+  trailingPE: number; // 67.76154
+  dividendRate: number; // 2.7
+  trailingAnnualDividendYield: number; // 0
+  dividendYield: number; // 0.15
+  epsTrailingTwelveMonths: number; // 26
+  epsForward: number; // 34.94122
+  epsCurrentYear: number; // 29.67978
+  priceEpsCurrentYear: number; // 59.360283
+  sharesOutstanding: number; // 1003349572
+  impliedSharesOutstanding: number; // 1003349572
+  bookValue: number; // 200.674
+  fiftyDayAverage: number; // 1820.324
+  fiftyDayAverageChange: number; // -58.523926
+  fiftyDayAverageChangePercent: number; // -0.03215028
+  twoHundredDayAverage: number; // 1915.6215
+  twoHundredDayAverageChange: number; // -153.82141
+  twoHundredDayAverageChangePercent: number; // -0.08029844
+  marketCap: number; // 1767701348352
+  forwardPE: number; // 50.421825
+  priceToBook: number; // 8.779414
+  sourceInterval: number; // 15
+  exchangeDataDelayedBy: number; // 15
+  averageAnalystRating: string; // '1.2 - Strong Buy'
+  tradeable: boolean; // false
+  cryptoTradeable: boolean; // false
+  regularMarketChange: number; // -31.099976
+  fulldayPrice: number; // 1761.8
+  regularMarketDayHigh: number; // 1801.7
+  regularMarketDayRange: { low: number; high: number }; // { low: 1759.1, high: 1801.7 }
+  regularMarketDayLow: number; // 1759.1
+  regularMarketVolume: number; // 542000
+  regularMarketPreviousClose: number; // 1792.9
+  bid: number; // 0
+  ask: number; // 0
+  bidSize: number; // 0
+  askSize: number; // 0
+  fullExchangeName: string; // 'NSE'
+  financialCurrency: string; // 'INR'
+  regularMarketOpen: number; // 1801.7
+  averageDailyVolume3Month: number; // 962887
+  averageDailyVolume10Day: number; // 835085
+  fiftyTwoWeekLowChange: number; // 61.400024
+  fiftyTwoWeekLowChangePercent: number; // 0.036109164
+  fiftyTwoWeekRange: { low: number; high: number }; // { low: 1700.4, high: 2132 }
+  fiftyTwoWeekHighChange: number; // -370.19995
+  fiftyTwoWeekHighChangePercent: number; // -0.17363974
+  fiftyTwoWeekLow: number; // 1700.4
+  fiftyTwoWeekHigh: number; // 2132
+  symbol: string; // 'SBILIFE.NS'
+}
