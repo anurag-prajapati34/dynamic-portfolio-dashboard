@@ -1,7 +1,8 @@
+'use client'
 import { Holding } from "@/utils/types";
 import { PortfolioTable } from "./PortfolioTable";
 
-export async function TopPerformers(
+export function TopPerformers(
     { holdings }: { holdings: Holding[] }
 ) {
     return (

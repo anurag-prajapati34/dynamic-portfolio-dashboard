@@ -7,8 +7,8 @@ const globalForCache = global as unknown as {
 export const cache =
   globalForCache.appCacheInstance ||
   new NodeCache({
-    stdTTL: 15,
-    checkperiod: 16,
+    stdTTL: 20,
+    checkperiod: 20,
   });
 
 if (process.env.NODE_ENV !== "production") {

@@ -1,66 +1,47 @@
 'use client';
 
 import { Header } from "@/components/Header";
-import { PortfolioTable } from "@/components/PortfolioTable";
 import { SectorBarChart } from "@/components/SectorBarChart";
 import { SectorPieChart } from "@/components/SectorPieChart";
 import { SummaryCard } from "@/components/SummaryCard";
 import { TopPerformers } from "@/components/TopPerfromers";
+import { fetchPortfolioData } from "@/services/api";
 import { aggregateHoldingsSectorWise, extractSummaryFromHoldings } from "@/utils/portfolio-helper";
+import { useQuery } from "@tanstack/react-query";
 
 export default function Home() {
 
-  const holdings = [
-    {
-      particulars: "Reliance Industries Ltd",
-      purchasePrice: 2450.50,
-      qty: 100,
-      investment: 245050,
-      portfolioPercentage: 18.7,
-      currentMarketPrice: 2625.75,
-      currentValue: 262575,
-      gainLoss: 17525,
-      gainLossPercentage: 7.15,
-      marketCap: 1780000000000,
-      peRatio: 23.4,
-      latestEarnings: 76500,
-      sector: "Energy & Petrochemicals",
-      symbol: "RELIANCE"
-    },
-    {
-      particulars: "Tata Motors Ltd",
-      purchasePrice: 2450.50,
-      qty: 100,
-      investment: 245050,
-      portfolioPercentage: 18.7,
-      currentMarketPrice: 2625.75,
-      currentValue: 262575,
-      gainLoss: 17525,
-      gainLossPercentage: 7.15,
-      marketCap: 1780000000000,
-      peRatio: 23.4,
-      latestEarnings: 76500,
-      sector: "Energy & Petrochemicals",
-      symbol: "TATAMOTORS"
-    },
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['holdings'],
+    queryFn: () => fetchPortfolioData(),
+    refetchInterval: 15000,
+    staleTime: 15000
+  })
 
-    {
-      particulars: "Reliance Industries Ltd",
-      purchasePrice: 2450.50,
-      qty: 100,
-      investment: 245050,
-      portfolioPercentage: 18.7,
-      currentMarketPrice: 2625.75,
-      currentValue: 262575,
-      gainLoss: 17525,
-      gainLossPercentage: 7.15,
-      marketCap: 1780000000000,
-      peRatio: 23.4,
-      latestEarnings: 76500,
-      sector: "Petroleum",
-      symbol: "RELIANCE"
-    },
-  ];
+  if (isLoading) {
+    return (
+      <div className="p-8 flex items-center justify-center min-h-[400px]">
+        <div className="flex items-center space-x-2 text-gray-500">
+          <div className="w-4 h-4 border-2 border-gray-900 border-t-transparent rounded-full animate-spin" />
+          <span className="text-sm font-medium">Fetching portfolio holdings...</span>
+        </div>
+      </div>
+    );
+  }
+
+  // 2. Error State
+  if (error || !data) {
+    return (
+      <div className="p-8">
+        <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+          Failed to load portfolio data. Make sure your Express backend is running on port 5000.
+        </div>
+      </div>
+    );
+  }
+  console.log("fetched holdings data----", data)
+
+  const holdings = data?.data;
   const sectorWiseHoldings = aggregateHoldingsSectorWise(holdings);
   const summary = extractSummaryFromHoldings(holdings);
 
