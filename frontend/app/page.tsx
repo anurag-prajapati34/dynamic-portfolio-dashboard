@@ -34,7 +34,7 @@ export default function Home() {
     return (
       <div className="p-8">
         <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
-          Failed to load portfolio data. Make sure your Express backend is running on port 5000.
+          Failed to load portfolio data. Please try again
         </div>
       </div>
     );

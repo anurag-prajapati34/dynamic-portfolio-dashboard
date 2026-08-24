@@ -7,11 +7,12 @@ import { useQuery } from "@tanstack/react-query";
 
 export default function Holdings() {
 
+    const refetchInterval = Number(process.env.NEXT_PUBLIC_REFETCH_INTERVAL || 15000)
     const { data, isLoading, error } = useQuery({
         queryKey: ['holdings'],
         queryFn: () => fetchPortfolioData(),
-        refetchInterval: 15000,
-        staleTime: 15000
+        refetchInterval: refetchInterval,
+        staleTime: 60 * 1000
     })
 
     if (isLoading) {
@@ -30,7 +31,7 @@ export default function Holdings() {
         return (
             <div className="p-8">
                 <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
-                    Failed to load portfolio data. Make sure your Express backend is running on port 5000.
+                    Failed to load portfolio data. Please try again
                 </div>
             </div>
         );
