@@ -1,7 +1,7 @@
-import React, { useMemo } from "react";
-import { tableFeatures, useTable } from "@tanstack/react-table";
-import type { ColumnDef } from "@tanstack/react-table";
 import { Holding } from "@/utils/types";
+import type { ColumnDef } from "@tanstack/react-table";
+import { tableFeatures, useTable } from "@tanstack/react-table";
+import React, { useMemo } from "react";
 
 
 interface PortfolioTableProps {
@@ -111,8 +111,8 @@ export const PortfolioTable: React.FC<PortfolioTableProps> = ({ data }) => {
     });
 
     return (
-        <div className="overflow-x-auto border-t border-gray-100">
-            <table className="min-w-full divide-y divide-gray-200 text-sm text-left">
+        <div className="overflow-x-auto border rounded-xl border-gray-400">
+            <table className="min-w-full divide-y divide-gray-400 text-sm text-left">
                 <thead className="bg-gray-50 text-gray-500 font-medium">
                     {table.getHeaderGroups().map((headerGroup) => (
                         <tr key={headerGroup.id}>

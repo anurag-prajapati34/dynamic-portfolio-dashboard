@@ -29,11 +29,11 @@ export const SectorGroup: React.FC<SectorGroupProps> = ({
 
 
     return (
-        <div className="bg-white  border shadow-sm  overflow-hidden w-full">
+        <div className="bg-white overflow-hidden w-full">
 
             <div
                 onClick={() => setIsOpen(!isOpen)}
-                className="p-4 bg-gray-50 flex flex-wrap items-center justify-between cursor-pointer hover:bg-gray-100 transition-colors border-b select-none"
+                className="p-4 bg-gray-50 flex flex-wrap items-center justify-between cursor-pointer hover:bg-gray-100 transition-colorsselect-none"
             >
 
                 <div className="flex items-center space-x-3">

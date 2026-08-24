@@ -5,6 +5,7 @@ import { PortfolioTable } from "@/components/PortfolioTable";
 import { SectorBarChart } from "@/components/SectorBarChart";
 import { SectorPieChart } from "@/components/SectorPieChart";
 import { SummaryCard } from "@/components/SummaryCard";
+import { TopPerformers } from "@/components/TopPerfromers";
 import { aggregateHoldingsSectorWise, extractSummaryFromHoldings } from "@/utils/portfolio-helper";
 
 export default function Home() {
@@ -81,7 +82,8 @@ export default function Home() {
         < SectorPieChart data={SectorChartData} />
         <SectorBarChart data={SectorChartData} />
       </div>
-      <PortfolioTable data={holdings} />
+
+      <TopPerformers holdings={holdings} />
 
     </div>
   );

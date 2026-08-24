@@ -25,7 +25,7 @@ interface PortfolioChartsProps {
 const COLORS = ["#3B82F6", "#10B981", "#F59E0B", "#8B5CF6", "#EC4899", "#6366F1"];
 
 export const SectorPieChart: React.FC<PortfolioChartsProps> = ({ data }) => {
-    return <div className="bg-white p-5  border  shadow-sm">
+    return <div className="bg-white p-5 border border-gray-400 rounded-lg">
         <h3 className="text-sm font-semibold text-gray-700 mb-4">
             Sector Allocation (Present Value)
         </h3>
