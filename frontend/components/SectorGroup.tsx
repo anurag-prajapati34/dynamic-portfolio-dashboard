@@ -18,8 +18,6 @@ export const SectorGroup: React.FC<SectorGroupProps> = ({
     const [isOpen, setIsOpen] = useState(true);
 
 
-
-
     const {
         totalInvestment,
         totalChange,

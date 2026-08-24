@@ -16,7 +16,7 @@ export const SummaryCard: React.FC<SummaryCardProps> = ({ summary }) => {
             <div className="p-5 bg-white border border-gray-400 rounded-lg flex flex-col justify-between">
                 <div>
                     <div className="flex items-center justify-between">
-                        <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <p className="text-xs font-medium text-gray-500  tracking-wider">
                             Total Portfolio Value
                         </p>
                         <div className="p-1.5 bg-blue-50 text-blue-600 rounded-md">
@@ -36,7 +36,7 @@ export const SummaryCard: React.FC<SummaryCardProps> = ({ summary }) => {
             <div className="p-5 bg-white border border-gray-400 rounded-lg flex flex-col justify-between">
                 <div>
                     <div className="flex items-center justify-between">
-                        <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <p className="text-xs font-medium text-gray-500  tracking-wider">
                             Total Investment
                         </p>
                         <div className="p-1.5 bg-purple-50 text-purple-600 rounded-md">
@@ -55,7 +55,7 @@ export const SummaryCard: React.FC<SummaryCardProps> = ({ summary }) => {
             <div className="p-5 bg-white border border-gray-400 rounded-lg flex flex-col justify-between">
                 <div>
                     <div className="flex items-center justify-between">
-                        <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <p className="text-xs font-medium text-gray-500  tracking-wider">
                             Total Gain / Loss
                         </p>
                         <div

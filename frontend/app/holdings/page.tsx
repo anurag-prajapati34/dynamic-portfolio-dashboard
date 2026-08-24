@@ -42,7 +42,7 @@ export default function Holdings() {
     const sectorWiseHoldings = aggregateHoldingsSectorWise(holdings);
     return <div className="w-full flex flex-col gap-4 px-4 py-4 ">
 
-        <SearchBar searchQuery="" setSearchQuery={() => { }} />
+        {/* <SearchBar searchQuery="" setSearchQuery={() => { }} /> */}
         {Object.keys(sectorWiseHoldings).map((sectorName) => (
             <SectorGroup key={sectorName} sectorName={sectorName} holdings={sectorWiseHoldings[sectorName]} />))}
 
