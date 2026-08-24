@@ -1,9 +1,8 @@
 'use client';
 
 import { Header } from "@/components/Header";
-import { SearchBar } from "@/components/SearchBar";
+import { PortfolioTable } from "@/components/PortfolioTable";
 import { SectorBarChart } from "@/components/SectorBarChart";
-import { SectorGroup } from "@/components/SectorGroup";
 import { SectorPieChart } from "@/components/SectorPieChart";
 import { SummaryCard } from "@/components/SummaryCard";
 import { aggregateHoldingsSectorWise, extractSummaryFromHoldings } from "@/utils/portfolio-helper";
@@ -70,22 +69,20 @@ export default function Home() {
     totalPresentValue: sectorWiseHoldings[sectorName].reduce((total, holding) => total + (holding.currentValue || 0), 0),
   }))
   return (
-    <div className="w-full flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans">
-      <main className="flex flex-1 w-full flex-col items-center justify-between py-4 px-16 bg-white sm:items-start gap-4">
-        <Header lastUpdated={new Date().toLocaleString()} isFetching={false} onRefresh={() => { }} />
-        <SummaryCard summary={
-          summary
+    <div className="w-full flex flex-col gap-4 px-4 py-4 ">
 
-        } />
-        <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-4
+      <Header lastUpdated={new Date().toLocaleString()} isFetching={false} onRefresh={() => { }} />
+      <SummaryCard summary={
+        summary
+
+      } />
+      <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-4
          ">
-          < SectorPieChart data={SectorChartData} />
-          <SectorBarChart data={SectorChartData} />
-        </div>
-        <SearchBar searchQuery="" setSearchQuery={() => { }} />
-        {Object.keys(sectorWiseHoldings).map((sectorName) => (
-          <SectorGroup key={sectorName} sectorName={sectorName} holdings={sectorWiseHoldings[sectorName]} />))}
-      </main>
+        < SectorPieChart data={SectorChartData} />
+        <SectorBarChart data={SectorChartData} />
+      </div>
+      <PortfolioTable data={holdings} />
+
     </div>
   );
 }
