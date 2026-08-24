@@ -49,7 +49,7 @@ export const SectorGroup: React.FC<SectorGroupProps> = ({
 
                 <div className="flex items-center space-x-6 text-sm mt-2 sm:mt-0">
                     <div>
-                        <span className="text-xs text-gray-500 uppercase block">
+                        <span className="text-xs text-gray-500  block">
                             Total Investment
                         </span>
                         <span className="font-semibold text-gray-900">
@@ -58,7 +58,7 @@ export const SectorGroup: React.FC<SectorGroupProps> = ({
                     </div>
 
                     <div>
-                        <span className="text-xs text-gray-500 uppercase block">
+                        <span className="text-xs text-gray-500  block">
                             Present Value
                         </span>
                         <span className="font-semibold text-gray-900">
@@ -67,7 +67,7 @@ export const SectorGroup: React.FC<SectorGroupProps> = ({
                     </div>
 
                     <div>
-                        <span className="text-xs text-gray-500 uppercase block">
+                        <span className="text-xs text-gray-500  block">
                             Gain / Loss
                         </span>
                         <span
