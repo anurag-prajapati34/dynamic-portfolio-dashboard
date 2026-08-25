@@ -8,8 +8,8 @@ const globalForCache = global as unknown as {
 export const yahooCache =
   globalForCache.yahooCacheInstance ||
   new NodeCache({
-    stdTTL: 60 * 60,
-    checkperiod: 60 * 60,
+    stdTTL: 15,
+    checkperiod: 15,
   });
 
 export const googleCache =

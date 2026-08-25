@@ -29,7 +29,6 @@ export default function Home() {
     );
   }
 
-  // 2. Error State
   if (error || !data) {
     return (
       <div className="p-8">
