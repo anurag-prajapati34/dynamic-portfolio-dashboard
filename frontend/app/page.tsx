@@ -38,7 +38,6 @@ export default function Home() {
       </div>
     );
   }
-  console.log("fetched holdings data----", data)
 
   const holdings = data?.data;
   const sectorWiseHoldings = aggregateHoldingsSectorWise(holdings);

@@ -1,19 +1,16 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import { TopBar } from "./TopBar";
+import { useState } from "react";
 import { Sidebar } from "./Sidebar";
+import { TopBar } from "./TopBar";
 
 export default function ClientWrapper({ children }: { children: React.ReactNode }) {
 
     const [isMenuBarOpen, setIsMenuBarOpen] = useState(false);
 
-    const pathname = usePathname();
 
-    useEffect(() => {
-        console.log("Current path changed to:", pathname);
-    }, [pathname]);
+
+
 
     return <div className="bg-white">
         <TopBar onMenuClick={() => setIsMenuBarOpen(!isMenuBarOpen)} />

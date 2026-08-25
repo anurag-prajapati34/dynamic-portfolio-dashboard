@@ -70,7 +70,6 @@ export async function fetchGoogleFinanceMetricsBatch(symbols: string[]) {
 
     if (i + 3 < symbols.length) {
       const ms = 1000;
-      console.log(`Waiting for ${ms} milliseconds before next batch...`);
       await delay(ms);
     }
   }
@@ -89,13 +88,10 @@ export async function fetchAndCacheGoogleFinanceMetrics(
     Array.isArray(cachedMetrics) &&
     cachedMetrics.length > 0
   ) {
-    console.log("googleFinanceMetrics from cache");
     return cachedMetrics;
   }
 
-  console.log("googleFinanceMetrics from api");
   const metrics = await fetchGoogleFinanceMetricsBatch(symbols);
-  console.log("googleFinanceMetrics metrics----", metrics);
 
   if (!metrics || !metrics.length) {
     return [];

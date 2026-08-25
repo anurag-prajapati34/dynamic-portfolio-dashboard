@@ -20,7 +20,6 @@ export const fetchYahooFinanceMetricsBatch = async (symbols: string[]) => {
     result.push(...batchResult);
 
     const ms = 1000;
-    console.log(`Waiting for ${ms} milliseconds before next batch...`);
     await delay(ms);
   }
 
@@ -37,12 +36,9 @@ export async function fetchAndCacheYahooFinanceMetrics(
     Array.isArray(cachedMetrics) &&
     cachedMetrics.length > 0
   ) {
-    console.log("yahooFinanceMetrics from cache");
     return cachedMetrics;
   }
-  console.log("yahooFinanceMetrics from api");
   const metrics = await fetchYahooFinanceMetricsBatch(symbols);
-  console.log("yahooFinanceMetrics metrics----", metrics);
   yahooCache.set(cacheKey, metrics);
   return metrics as YahooFinanceMetrics[];
 }
