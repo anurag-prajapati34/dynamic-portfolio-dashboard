@@ -11,6 +11,7 @@ export const getHoldingsHandler = async (req: Request, res: Response) => {
       data: response,
     });
   } catch (error) {
+    console.error("Error fetching holdings:", error);
     return res.status(500).json({
       success: false,
       message: "Something went wrong, please try again later",
