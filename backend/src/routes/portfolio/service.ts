@@ -10,9 +10,10 @@ export const getHoldingsService = async () => {
   const holdings = getPortflioHoldingsQuery();
   const symbols = holdings.map((holding) => holding.symbol);
 
-  const yahooFinanceMetrics = await fetchAndCacheYahooFinanceMetrics(symbols);
-  const googleFinanceMetrics = await fetchAndCacheGoogleFinanceMetrics(symbols);
-
+  const [yahooFinanceMetrics, googleFinanceMetrics] = await Promise.all([
+    fetchAndCacheYahooFinanceMetrics(symbols),
+    fetchAndCacheGoogleFinanceMetrics(symbols),
+  ]);
   const yahooFinanceMetricsLookup = new Map<string, YahooFinanceMetrics>();
   for (const metrics of yahooFinanceMetrics) {
     if (metrics.symbol) {
