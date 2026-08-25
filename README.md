@@ -51,8 +51,8 @@ Holdings
 
 ### 1. Clone the Repository
 ```bash
-git clone [https://github.com/your-username/portfolio-dashboard.git](https://github.com/your-username/portfolio-dashboard.git)
-cd portfolio-dashboard
+git clone [https://github.com/anurag-prajapati34/dynamic-portfolio-dashboard.git](https://github.com/anurag-prajapati34/dynamic-portfolio-dashboard)
+cd dynamic-portfolio-dashboard
 ```
 
 
