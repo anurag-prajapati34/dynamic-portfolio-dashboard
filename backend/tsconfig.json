@@ -5,7 +5,7 @@
 
     "module": "nodenext",
     "target": "esnext",
-    // "types": ["node"],
+    "types": ["node"],
 
     // Other Outputs
     "sourceMap": true,
