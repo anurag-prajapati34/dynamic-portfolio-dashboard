@@ -80,23 +80,28 @@ export async function fetchGoogleFinanceMetricsBatch(symbols: string[]) {
 export async function fetchAndCacheGoogleFinanceMetrics(
   symbols: string[],
 ): Promise<GoogleFinanceMetrics[]> {
-  const cacheKey = "google-finance-metrics";
-  const cachedMetrics = googleCache.get(cacheKey);
+  try {
+    const cacheKey = "google-finance-metrics";
+    const cachedMetrics = googleCache.get(cacheKey);
 
-  if (
-    cachedMetrics &&
-    Array.isArray(cachedMetrics) &&
-    cachedMetrics.length > 0
-  ) {
-    return cachedMetrics;
-  }
+    if (
+      cachedMetrics &&
+      Array.isArray(cachedMetrics) &&
+      cachedMetrics.length > 0
+    ) {
+      return cachedMetrics;
+    }
 
-  const metrics = await fetchGoogleFinanceMetricsBatch(symbols);
+    const metrics = await fetchGoogleFinanceMetricsBatch(symbols);
 
-  if (!metrics || !metrics.length) {
+    if (!metrics || !metrics.length) {
+      return [];
+    }
+
+    googleCache.set(cacheKey, metrics);
+    return metrics;
+  } catch (error) {
+    console.error("Error fetching Google Finance metrics:", error);
     return [];
   }
-
-  googleCache.set(cacheKey, metrics);
-  return metrics;
 }
