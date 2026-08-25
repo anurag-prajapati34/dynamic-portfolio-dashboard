@@ -29,16 +29,21 @@ export const fetchYahooFinanceMetricsBatch = async (symbols: string[]) => {
 export async function fetchAndCacheYahooFinanceMetrics(
   symbols: string[],
 ): Promise<YahooFinanceMetrics[]> {
-  const cacheKey = "google-yahoo-metrics";
-  const cachedMetrics = yahooCache.get(cacheKey);
-  if (
-    cachedMetrics &&
-    Array.isArray(cachedMetrics) &&
-    cachedMetrics.length > 0
-  ) {
-    return cachedMetrics;
+  try {
+    const cacheKey = "google-yahoo-metrics";
+    const cachedMetrics = yahooCache.get(cacheKey);
+    if (
+      cachedMetrics &&
+      Array.isArray(cachedMetrics) &&
+      cachedMetrics.length > 0
+    ) {
+      return cachedMetrics;
+    }
+    const metrics = await fetchYahooFinanceMetricsBatch(symbols);
+    yahooCache.set(cacheKey, metrics);
+    return metrics as YahooFinanceMetrics[];
+  } catch (error) {
+    console.error("Error fetching Yahoo Finance metrics:", error);
+    return [];
   }
-  const metrics = await fetchYahooFinanceMetricsBatch(symbols);
-  yahooCache.set(cacheKey, metrics);
-  return metrics as YahooFinanceMetrics[];
 }
