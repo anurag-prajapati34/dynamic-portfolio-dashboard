@@ -4,7 +4,7 @@ export const TopBar = ({ onMenuClick }: { onMenuClick?: () => void }) => {
 
 
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 h-12  border-b border-gray-400  flex items-center justify-between px-4  text-black">
+        <header className="fixed top-0 left-0 right-0 z-50 h-12  border-b border-gray-400  flex items-center justify-between px-4  text-black bg-white">
 
             <div className="flex items-center gap-2 w-auto md:w-56">
                 <button

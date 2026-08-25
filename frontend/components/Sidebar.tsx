@@ -39,7 +39,7 @@ export const Sidebar = ({
 
             <aside
                 className={`
-          fixed md:relative top-14 md:top-0 left-0 h-[calc(100vh-3.5rem)] md:h-full w-52 bg-white border-r border-gray-200 flex flex-col z-50 md:z-auto
+          fixed md:relative  md:top-0 left-0 h-full md:h-full w-52 bg-white border-r border-gray-200 flex flex-col z-50 md:z-auto
           transition-transform duration-300 ease-in-out shrink-0
           ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
         `}

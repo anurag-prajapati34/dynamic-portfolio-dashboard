@@ -53,11 +53,11 @@ export default function Home() {
   return (
     <div className="w-full flex flex-col gap-4 px-4 py-4 ">
 
-      {/* <Header lastUpdated={new Date().toLocaleString()} isFetching={false} onRefresh={() => { }} /> */}
       <SummaryCard summary={
         summary
 
       } />
+
       <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-4
          ">
         < SectorPieChart data={SectorChartData} />
