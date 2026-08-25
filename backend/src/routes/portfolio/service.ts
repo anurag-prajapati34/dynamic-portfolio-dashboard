@@ -1,58 +1,64 @@
-import type { Quote } from "yahoo-finance2/modules/quote";
-import { cache } from "../../utils/cache.js";
-import { getStockDetailsFromYahooFinance } from "../../utils/yahoo-finance.js";
+import { fetchAndCacheGoogleFinanceMetrics } from "../../utils/google-finance.js";
+import type {
+  GoogleFinanceMetrics,
+  YahooFinanceMetrics,
+} from "../../utils/types.js";
+import { fetchAndCacheYahooFinanceMetrics } from "../../utils/yahoo-finance.js";
 import { getPortflioHoldingsQuery } from "./queries.js";
 
-const HOLDINGS_CACHE_KEY = "holdings";
 export const getHoldingsService = async () => {
-  const cachedHoldings = cache.get(HOLDINGS_CACHE_KEY);
-
-  if (
-    cachedHoldings &&
-    Array.isArray(cachedHoldings) &&
-    cachedHoldings.length > 0
-  ) {
-    return cachedHoldings;
-  }
-
   const holdings = getPortflioHoldingsQuery();
+  const symbols = holdings.map((holding) => holding.symbol);
 
-  const symbols: string[] = [];
-  for (const holding of holdings) {
-    const symbol = String(holding.symbol).trim();
-    if (symbol) symbols.push(symbol + ".NS");
+  const yahooFinanceMetrics = await fetchAndCacheYahooFinanceMetrics(symbols);
+  const googleFinanceMetrics = await fetchAndCacheGoogleFinanceMetrics(symbols);
+
+  const yahooFinanceMetricsLookup = new Map<string, YahooFinanceMetrics>();
+  for (const metrics of yahooFinanceMetrics) {
+    if (metrics.symbol) {
+      yahooFinanceMetricsLookup.set(metrics.symbol, metrics);
+    }
   }
 
-  const result = await getStockDetailsFromYahooFinance(symbols);
-  const yahooMarketDataMap = new Map<string, Quote>();
-  for (const quote of result) {
-    if (quote.symbol) {
-      yahooMarketDataMap.set(quote.symbol, quote);
+  const googleFinanceMetricsLookup = new Map<string, GoogleFinanceMetrics>();
+  for (const metrics of googleFinanceMetrics) {
+    if (metrics.symbol) {
+      googleFinanceMetricsLookup.set(metrics.symbol, metrics);
     }
   }
 
   const enhancedHoldings = holdings.map((holding) => {
     const symbol = String(holding.symbol).trim();
 
-    const quote = symbol ? yahooMarketDataMap.get(symbol + ".NS") : null;
+    const yahooMetrics = symbol
+      ? yahooFinanceMetricsLookup.get(symbol + ".NS")
+      : null;
+    const googleMetrics = symbol
+      ? googleFinanceMetricsLookup.get(symbol)
+      : null;
 
-    const liveCMP = quote?.regularMarketPrice ?? 0;
-    const presentValue = liveCMP * holding.qty;
-    const gainLoss = presentValue - holding.investment;
+    const currentMarketPrice = yahooMetrics?.regularMarketPrice ?? 0;
+    const currentValue = currentMarketPrice * holding.qty;
+    const gainLoss = currentValue - holding.investment;
     const gainLossPercentage = (gainLoss / holding.investment) * 100;
+
+    const googleLatestEarnings = googleMetrics?.latestEarnings ?? null;
+
+    const peRatio = googleLatestEarnings
+      ? currentMarketPrice / googleLatestEarnings
+      : null;
 
     return {
       ...holding,
-      currentMarketPrice: liveCMP,
-      currentValue: presentValue,
+      currentMarketPrice: currentMarketPrice,
+      currentValue: currentValue,
       gainLoss: gainLoss,
       gainLossPercentage: gainLossPercentage,
-      peRatio: quote?.trailingPE ?? null,
-      latestEarnings: quote?.epsTrailingTwelveMonths ?? null,
+      peRatio: peRatio ?? yahooMetrics?.trailingPE ?? null,
+      latestEarnings: yahooMetrics?.epsTrailingTwelveMonths ?? null,
       symbol: symbol,
     };
   });
 
-  cache.set(HOLDINGS_CACHE_KEY, enhancedHoldings);
   return enhancedHoldings;
 };

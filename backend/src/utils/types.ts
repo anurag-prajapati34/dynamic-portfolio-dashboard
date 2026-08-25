@@ -82,3 +82,11 @@ export interface YfStockQuote {
   fiftyTwoWeekHigh: number; // 2132
   symbol: string; // 'SBILIFE.NS'
 }
+
+export interface YahooFinanceMetrics extends YfStockQuote {}
+
+export interface GoogleFinanceMetrics {
+  symbol: string;
+  peRatio: number | null;
+  latestEarnings: number | null;
+}
