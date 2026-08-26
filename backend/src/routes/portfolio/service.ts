@@ -14,6 +14,7 @@ export const getHoldingsService = async () => {
     fetchAndCacheYahooFinanceMetrics(symbols),
     fetchAndCacheGoogleFinanceMetrics(symbols),
   ]);
+
   const yahooFinanceMetricsLookup = new Map<string, YahooFinanceMetrics>();
   for (const metrics of yahooFinanceMetrics) {
     if (metrics.symbol) {
@@ -38,7 +39,8 @@ export const getHoldingsService = async () => {
       ? googleFinanceMetricsLookup.get(symbol)
       : null;
 
-    const currentMarketPrice = yahooMetrics?.regularMarketPrice ?? 0;
+    const currentMarketPrice =
+      yahooMetrics?.regularMarketPrice || holding.currentValue || 0;
     const currentValue = currentMarketPrice * holding.qty;
     const gainLoss = currentValue - holding.investment;
     const gainLossPercentage = (gainLoss / holding.investment) * 100;
